@@ -1,0 +1,50 @@
+﻿@{
+    @model CyberMvcWeb.Models.SummaryInfoModel
+}
+
+<p>@Html.ActionLink("Back to search", "Index")</p>
+<br />
+<div class="row">
+    <div class="col-md-8">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>@Html.LabelFor(model => model.User.Login)</td>
+                    <td>@Html.LabelFor(model => model.User.UserName)</td>
+                    <td>@Html.LabelFor(model => model.User.Location)</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tr>
+                <td>@Html.DisplayFor(x => x.User.Login)</td>
+                <td>@Html.DisplayFor(x => x.User.UserName)</td>
+                <td>@Html.DisplayFor(x => x.User.Location)</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-4">
+        <img class="img-rounded" src="@Html.DisplayFor(model =>model.User.AvatarUrl)" />
+    </div>
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>@Html.LabelFor(model => model.User.Repositories.FirstOrDefault().Name)</td>
+            <td>@Html.LabelFor(model => model.User.Repositories.FirstOrDefault().Description)</td>
+            <td>@Html.LabelFor(model => model.User.Repositories.FirstOrDefault().StargazersCount)</td>
+            <td>@Html.LabelFor(model => model.User.Repositories.FirstOrDefault().RepoLink)</td>
+        </tr>
+    </thead>
+    @foreach (var data in Model.User.Repositories)
+            {
+        <tr>
+            <td>@data.Name</td>
+            <td>@data.Description</td>
+            <td>@data.StargazersCount</td>
+            <td><a href="@data.RepoLink" target="_blank">@data.RepoLink</a></td>
+            @Url.Action()
+        </tr>
+    }
+</table>

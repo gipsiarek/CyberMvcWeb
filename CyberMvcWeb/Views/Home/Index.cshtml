@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    @model CyberMvcWeb.Models.InputModel
+}
+
+<div class="jumbotron">
+    <p>Please provide Github user name </p>
+    @{ 
+        if (Model.ErrorMessage != null)
+        {
+            <div class="alert-danger">
+                @Model.ErrorMessage
+            </div>
+        }
+    }
+
+    @using (Html.BeginForm("Subscribe", "Home", FormMethod.Post))
+    {
+        @Html.TextBoxFor(model => model.GithubUsername)
+        @Html.ValidationMessageFor(model => model.GithubUsername)
+        <button type="submit">Search</button>
+    }
+</div>
